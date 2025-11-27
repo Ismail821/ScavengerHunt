@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Scavenger Hunt — Enter Code</title>
+    <title>SIP Offsite 2025: Scavenger Hunt</title>
     <style>
       :root{--bg:#071029;--card:#071826;--accent:#06b6d4;--muted:#98a6b8}
       *{box-sizing:border-box}
@@ -42,63 +42,12 @@
   <body>
     <div class="container">
       <div class="card" id="card">
-        <h1>Enter Secret Code</h1>
-        <p class="lead">Type the code and tap <strong>Go</strong>. This page is optimized for mobile.</p>
+        <h1>SIP Offsite 2025</h1>
+        <p class="lead">Well, you're not supposed to be here...., But Good Luck on your hunt!</p>
 
-        <form id="codeForm" aria-describedby="result">
-          <div class="form-row">
-            <input id="codeInput" type="text" inputmode="text" autocomplete="off" placeholder="e.g. 1234 or secret-word" aria-label="Code input">
-            <button id="submitBtn" type="submit">Go</button>
-          </div>
-          <div id="result" class="result" aria-live="polite" hidden></div>
-        </form>
       </div>
     </div>
 
-    <script>
-    (function(){
-      const codes = {
-        '1234': {title: 'Access Granted', message: 'Welcome!'},
-        '2345': {title: 'Access Granted 2', message: 'Welcome 2!'},
-        'open-sesame': {title: 'Secret Unlocked', message: "You've found a hidden clue."}
-      };
-
-      const form = document.getElementById('codeForm');
-      const input = document.getElementById('codeInput');
-      const result = document.getElementById('result');
-      const card = document.getElementById('card');
-
-      function showInlineResult(type, title, msg){
-        result.hidden = false;
-        result.innerHTML = '<strong>' + title + '</strong><div class="muted small" style="margin-top:6px">' + msg + '</div>';
-        if(type === 'success'){
-          result.style.borderColor = 'rgba(6,182,212,0.15)';
-        } else {
-          result.style.borderColor = 'rgba(255,80,80,0.12)';
-        }
-      }
-
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        const raw = input.value.trim();
-        if(!raw){ showInlineResult('error','No code entered','Please type a code to continue.'); return; }
-
-        // Comparison is exact; you can adjust to case-insensitive if needed.
-        if(Object.prototype.hasOwnProperty.call(codes, raw)){
-          const ok = codes[raw];
-          // Replace card with success content (clears form)
-          card.innerHTML = '<h1>' + ok.title + '</h1><p class="muted" style="margin-top:8px">' + ok.message + '</p><p class="small muted" style="margin-top:12px">Refresh the page to try another code.</p>';
-        } else {
-          showInlineResult('error','Access Denied','That code is not valid. Refresh the page to try again.');
-        }
-      });
-
-      // Allow Enter key to submit from on-screen keyboard
-      input.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); form.dispatchEvent(new Event('submit', {bubbles:true, cancelable:true})); } });
-      // Autofocus for convenience on mobile if supported
-      try{ input.focus(); }catch(e){}
-    })();
-    </script>
   </body>
 </html>
 
