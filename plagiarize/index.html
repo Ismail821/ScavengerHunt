@@ -94,7 +94,14 @@
         if(Object.prototype.hasOwnProperty.call(codes, raw)){
           const ok = codes[raw];
           // Replace card with success content (clears form)
-          card.innerHTML = '<h1>' + ok.title + '</h1><p class="muted" style="margin-top:8px">' + ok.message + '</p><p class="small muted" style="margin-top:12px">Refresh the page to try another code.</p>';
+            // Replace card with success content (clears form) and show image only if the code provides one
+            var html = '<h1>' + ok.title + '</h1>' +
+                       '<p class="muted" style="margin-top:8px">' + ok.message + '</p>';
+            if (ok.image) {
+              html += '<img src="' + ok.image + '" class="hero-img" alt="' + (ok.imageAlt || 'Clue image') + '" loading="lazy">';
+            }
+            html += '<p class="small muted" style="margin-top:12px">Refresh the page to try another code.</p>';
+            card.innerHTML = html;
         } else {
           showInlineResult('error','Access Denied','That code is not valid. Refresh the page to try again.');
         }
