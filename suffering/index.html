@@ -34,6 +34,7 @@
       input::placeholder{color:rgba(230,238,246,0.5)}
       button{flex:0 0 auto;padding:12px 14px;border-radius:10px;border:none;background:var(--accent);color:#022;font-weight:700;cursor:pointer}
       .result{margin-top:14px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);color:inherit;border:1px solid transparent}
+      .hero-img{width:100%;max-width:100%;height:auto;object-fit:cover;border-radius:10px;margin-top:12px;display:block}
       .muted{color:var(--muted);font-size:0.92rem}
       .small{font-size:0.82rem}
       @media(min-width:520px){body{padding:32px}.card{padding:22px}}
@@ -43,7 +44,7 @@
     <div class="container">
       <div class="card" id="card">
         <h1>Enter Secret Code</h1>
-        <p class="lead">Type the code and tap <strong>Go</strong>. This page is optimized for mobile.</p>
+        <p class="lead">Type the code and tap <strong>Go</strong>.</p>
 
         <form id="codeForm" aria-describedby="result">
           <div class="form-row">
@@ -58,8 +59,15 @@
     <script>
     (function(){
       const codes = {
-        '1234': {title: 'Access Granted', message: 'Welcome!'},
-        '2345': {title: 'Access Granted 2', message: 'Welcome 2!'},
+        'FREESYNC': {title: 'OOPS: Looks like a Bug, Contact the Organaiser with a screenshot of this page:9566034502', message: 'Welcome!'},
+        'AM5': {title: 'OOPS: Looks like a Bug, Contact the Organaiser with a screenshot of this page:9566034502', message: 'Welcome!'},
+        'HBM': {title: 'OOPS: Looks like a Bug, Contact the Organaiser with a screenshot of this page:9566034502', message: 'Welcome!'},
+        'AM4': {title: 'OOPS: Looks like a Bug, Contact the Organaiser with a screenshot of this page:9566034502', message: 'Welcome!'},
+        'RDNA': {title: 'OOPS: Looks like a Bug, Contact the Organaiser with a screenshot of this page:9566034502', message: 'Welcome!'},
+        'CDNA': {title: 'OOPS: Looks like a Bug, Contact the Organaiser with a screenshot of this page:9566034502', message: 'Welcome!'},
+        'OPENCL': {title: 'OOPS: Looks like a Bug, Contact the Organaiser with a screenshot of this page:9566034502', message: 'Welcome!'},
+        'STRIX': {title: 'OOPS: Looks like a Bug, Contact the Organaiser with a screenshot of this page:9566034502', message: 'Welcome!'},
+        'UALINK': {title: 'OOPS: Looks like a Bug, Contact the Organaiser with a screenshot of this page:9566034502', message: 'Welcome!'},
         'open-sesame': {title: 'Secret Unlocked', message: "You've found a hidden clue."}
       };
 

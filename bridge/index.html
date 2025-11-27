@@ -34,6 +34,7 @@
       input::placeholder{color:rgba(230,238,246,0.5)}
       button{flex:0 0 auto;padding:12px 14px;border-radius:10px;border:none;background:var(--accent);color:#022;font-weight:700;cursor:pointer}
       .result{margin-top:14px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);color:inherit;border:1px solid transparent}
+      .hero-img{width:100%;max-width:100%;height:auto;object-fit:cover;border-radius:10px;margin-top:12px;display:block}
       .muted{color:var(--muted);font-size:0.92rem}
       .small{font-size:0.82rem}
       @media(min-width:520px){body{padding:32px}.card{padding:22px}}
@@ -43,7 +44,7 @@
     <div class="container">
       <div class="card" id="card">
         <h1>Enter Secret Code</h1>
-        <p class="lead">Type the code and tap <strong>Go</strong>. This page is optimized for mobile.</p>
+        <p class="lead">Type the code and tap <strong>Go</strong>.</p>
 
         <form id="codeForm" aria-describedby="result">
           <div class="form-row">
@@ -60,12 +61,14 @@
       const codes = {
         'RYZEN': {title: 'Our Pipeline Carried Data so far, can the same carry water now?', 
                   message: 'SecretCode: VEGA'},
-        'MILANO': {title: 'Node where human cores are overclocked, thermal throttling kicks in, and water cooling keeps performance stable.', 
+        'MILAN': {title: 'Node where human cores are overclocked, thermal throttling kicks in, and water cooling keeps performance stable.', 
                   message: 'SecretCode: AM5'},
         'EXPO': {title: 'Locate the defect in the silicon.', 
-                  message: 'SecretCode: NAPLES'},
-        'ZEN': {title: 'Error-[SYN-LOCERR] Syntax error \nFile: /rosetta/navigation.svh \
-                        \nLine: 12.963646\n Column: 75.929229\n Near: \'traditions outing\'\
+                  message: 'SecretCode: NAPLES',
+                  image: 'image.png',
+                  imageAlt: 'Silicon defect clue image'},
+        'ZEN': {title: 'Error-[SYN-LOCERR] Syntax error File: /rosetta/navigation.svh \
+                        Line: 12.963646 Column: 75.929229 Near: \'traditions outing\'\
                         Description: Unexpected next clue. Parser wants you to continue.',
                 message: 'Secret code: FIDELITY'},
         'INSTINCT': {title: 'SYSTEM ERROR - OVERFLOW DETECTED\nApply reset, clear queues and enter low power mode.', 
@@ -97,7 +100,14 @@
         if(Object.prototype.hasOwnProperty.call(codes, raw)){
           const ok = codes[raw];
           // Replace card with success content (clears form)
-          card.innerHTML = '<h1>' + ok.title + '</h1><p class="muted" style="margin-top:8px">' + ok.message + '</p><p class="small muted" style="margin-top:12px">Refresh the page to try another code.</p>';
+            // Replace card with success content (clears form) and show image only if the code provides one
+            var html = '<h1>' + ok.title + '</h1>' +
+                       '<p class="muted" style="margin-top:8px">' + ok.message + '</p>';
+            if (ok.image) {
+              html += '<img src="' + ok.image + '" class="hero-img" alt="' + (ok.imageAlt || 'Clue image') + '" loading="lazy">';
+            }
+            html += '<p class="small muted" style="margin-top:12px">Refresh the page to try another code.</p>';
+            card.innerHTML = html;
         } else {
           showInlineResult('error','Access Denied','That code is not valid. Refresh the page to try again.');
         }
